@@ -1,0 +1,48 @@
+pt-BR:
+  activerecord:
+    models:
+      admin:
+        one: 'Administrador'
+        other: 'Administradores'
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
+      subject:
+        one: 'Assunto'
+        other: 'Assuntos'
+      question:
+        one: 'Questão'
+        other: 'Questões'
+    attributes:
+      admin:
+        id: 'Identificação'
+        email: 'Email'
+        password: 'Senha'
+        password_confirmation: 'Confirmar Senha'
+        created_at: 'Criado em:'
+        updated_at: 'Atualizado em:'
+      user:
+        id: 'Identificação'
+        email: 'Email'
+        first_name: 'Nome'
+        last_name:  'Sobrenome'
+        created_at: 'Criado em:'
+        updated_at: 'Atualizado em:'
+      user_profile:
+        id: 'Identificação'
+        address: 'Endereço'
+        gender: 'Sexo'
+        birthdate: 'Data da Nascimento'
+        created_at: 'Criado em:'
+        updated_at: 'Atualizado em:'
+      subject:
+        id: 'Identificação'
+        description: 'Descrição'
+        created_at: 'Criado em:'
+        updated_at:
+      question:
+        id: 'Identificação'
+        description: 'Descrição'
+        subject_id: 'Assunto'
+        created_at: 'Criado em:'
+        updated_at: 'Atualizado em:'

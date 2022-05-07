@@ -1,0 +1,39 @@
+<h1><%= t('messages.listing_other', model: @subjects.model_name.human(count: 2)) %></h1>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th><%= translate_attributes(@subjects, :id) %></th>
+        <th><%= translate_attributes(@subjects, :description) %></th>
+        <th>
+          <%= link_to new_admins_backoffice_subject_path, class:"btn btn-success btn-circle" do %>
+              <i class="fas fa-plus"></i>
+          <% end %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subjects.each do |subject| %>
+        <tr style='width:50px'>
+          <td><%= subject.id %></td>
+          <td><%= subject.description %></td>
+          <td style="width: 100px">
+          
+            <%= link_to edit_admins_backoffice_subject_path(subject.id), class:"btn btn-primary btn-circle" do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+
+            <%= link_to admins_backoffice_subjects_path(subject.id), method: :delete, class:"btn btn-danger btn-circle",
+                data: {confirm: t('messages.confirm_with', item: subject.description)} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+            
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='text-center'><%= paginate @subjects %></div>
+</div>
+
