@@ -1,0 +1,11 @@
+pt-BR:
+  messages:
+    confirm_with: Você deseja realmente excluir [%{item}]?
+    listing_admin: Lista de Usuários %{model}
+    listing_other: Lista de %{model}
+    editing_user: Editar dados do Usuário
+    editing_question: Editar Questão
+    editing_subject: Editar Assunto
+    new_user: Cadastrar novo Usuário
+    new_question: Cadastrar nova Questão
+    new_subject: Cadastrar novo Assunto

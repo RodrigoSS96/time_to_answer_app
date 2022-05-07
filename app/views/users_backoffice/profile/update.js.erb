@@ -1,0 +1,12 @@
+$('#avatarModal').modal('hide');
+
+document.getElementById('avatarImageLg').src = "<%= url_for(current_user.user_profile.avatar) %>"
+document.getElementById('avatarImageMd').src = "<%= url_for(current_user.user_profile.avatar) %>"
+document.getElementById('avatarImageSm').src = "<%= url_for(current_user.user_profile.avatar) %>"
+
+ $.bootstrapGrowl('Avatar Atualizado com Sucesso', {
+          type: 'success', // (null, 'info', 'error', 'success')
+          align: 'right', // ('left', 'right', or 'center')
+          allow_dismiss: true,
+          stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });

@@ -1,0 +1,13 @@
+pt-BR:
+  placeholders:
+    name: Nome
+    last_name: Sobrenome
+    email: Email
+    gender: Gênero
+    address: Endereço
+    birth_date: Data de Nascimento
+    password: Senha
+    confirm_password: Confirmação da Senha
+    describe_question: Descrição da Pergunta
+    describe_subject: Descrição do Assunto
+    select_quetion_category: Selecione a Categoria da Pergunta

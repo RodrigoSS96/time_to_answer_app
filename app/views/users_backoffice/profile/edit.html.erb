@@ -1,0 +1,155 @@
+<div class="row">
+						<div class="col-md-12 col-sm-12 ">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2> Informações do Perfil</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+                  <% if current_user.errors.any? %>
+                    <div class="alert alert-danger d-flex align-items-center" role="aert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" /></svg>
+                      <div>
+                        <ul>
+                          <% current_user.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  <% end %>
+                  <br>
+                  <%= form_with(url: users_backoffice_profile_path, model: current_user, local: true) do |form| %>
+
+
+                    <div class="item form-group">
+                      <%= form.label :first_name, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                      <div class="col-md-6 col-sm-6 ">
+                        <%= form.text_field :first_name,
+                            type:"text",
+                            class:"form-control",
+                            placeholder: t('placeholders.name') %>
+                      </div>
+                    </div>
+
+                    <div class="item form-group">
+                      <%= form.label :last_name, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                      <div class="col-md-6 col-sm-6 ">
+                        <%= form.text_field :last_name,
+                            type:"text",
+                            class:"form-control",
+                            placeholder: t('placeholders.last_name') %>
+                      </div>
+                    </div>
+
+                    <div class="item form-group">
+                      <%= form.label :email, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                      <div class="col-md-6 col-sm-6 ">
+                        <%= form.text_field :email,
+                            type:"email",
+                            class:"form-control",
+                            placeholder: t('placeholders.email'),
+                            readonly: true %>
+                      </div>
+                    </div>
+
+                    <%= form.fields_for :user_profile do |form_profile|  %>
+                      <div class="item form-group">
+                        <%= form_profile.label :address, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                        <div class="col-md-6 col-sm-6 ">
+                          <%= form_profile.text_field :address,
+                              type:"text",
+                              class:"form-control",
+                              placeholder: t('placeholders.address') %>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <%= form_profile.label :gender, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                        <div class="col-md-6 col-sm-6 ">
+                          <div id="gender" class="btn-group" data-toggle="buttons">
+
+                            <label class="btn <%= gender_select(current_user, 'M') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <%= form_profile.radio_button :gender, 'M' ,
+                                "data-parsley-multiple": "gender",
+                                "data-parsley-id": "12"
+                              %> &nbsp; Masculino &nbsp;
+                            </label>
+
+                            <label class="btn <%= gender_select(current_user, 'F') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <%= form_profile.radio_button :gender, 'F',
+                                "data-parsley-multiple": "gender",
+                                "data-parsley-id": "12"
+                              %> &nbsp; Feminino &nbsp;
+                            </label>
+
+                          </div>
+                        </div>
+										  </div>
+
+                      <%= javascript_tag do %>
+                        var labels = document.querySelectorAll('div#gender label');
+
+                        labels.forEach((label) => {
+                          label.addEventListener('click', () => {
+                            label.classList.remove('btn-default');
+                            label.classList.add('btn-primary');
+
+                            labels.forEach((lbl) => {
+                              if(lbl !== label) {
+                                lbl.classList.remove('btn-primary');
+                                lbl.classList.add('btn-default');
+                              }
+                            });
+                          });
+                        });
+                      <% end %>
+
+                      <div class="item form-group">
+                        <%= form_profile.label :birthdate, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                        <div class="col-md-6 col-sm-6">
+                          <%= form_profile.text_field :birthdate,
+                              value: (l(current_user.user_profile.birthdate) unless current_user.user_profile.birthdate.blank?),
+                              type:"text",
+                              class:"form-control datepicker",
+                              placeholder: t('placeholders.birth_date') %>
+                        </div>
+                      </div>
+                    <% end %>
+
+                    <div class="item form-group">
+                      <%= form.label :senha, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                      <div class="col-md-6 col-sm-6 ">
+                        <%= form.password_field :password,
+                            type:"password",
+                            class:"form-control",
+                            placeholder: t('placeholders.password') %>
+                      </div>
+                    </div>
+
+                    <div class="item form-group">
+                      <%= form.label :confirmação_de_senha, class:"col-form-label col-md-3 col-sm-3 label-align"%>
+                      <div class="col-md-6 col-sm-6 ">
+                        <%= form.password_field :password_confirmation,
+                            type:"password",
+                            class:"form-control",
+                            placeholder: t('placeholders.confirm_password') %>
+                      </div>
+                    </div>
+
+										<div class="ln_solid"></div>
+										<div class="item form-group">
+											<div class="col-md-6 col-sm-6 offset-md-3">
+                        <%= link_to 'Voltar', users_backoffice_welcome_index_path, class: 'btn btn-primary'%>
+												<button type="submit" class="btn btn-success">Salvar</button>
+											</div>
+										</div>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					</div>

@@ -1,0 +1,19 @@
+<h1>Seja Bem-Vindo!</h1>
+
+<div class="tile_count">
+
+  <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa-solid fa-caret-up"></i></i> Total de Questões Corretas</span>
+    <div class="count"><%= @user_statistic.right_questions %></div>
+  </div>
+
+  <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa-solid fa-caret-down"></i></i> Total de Questões Incorretas</span>
+    <div class="count"><%= @user_statistic.wrong_questions %></div>
+  </div>
+
+  <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa-solid fa-align-justify"></i></i></i> Total de Questões Respondidas</span>
+    <div class="count green"><%= @user_statistic.answered_questions %></div>
+  </div>
+</div>
